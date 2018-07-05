@@ -44,9 +44,8 @@
             @Html.DisplayFor(modelItem => item.Salary)
         </td>
         <td>
-            <a href="@Url.Action("AddOrEdit","Employee", new { id=item.EmployeeID})" class="btn btn-defaul">Edit</a>
-            <a onClick="Delete(@item.EmployeeID)" class="btn btn-defaul">Delete</a> 
-            @*<a href="@Url.Action("Delete","Employee",new { id=item.EmployeeID})">Delete</a>*@
+            <a href="@Url.Action("AddOrEdit","Employee", new { id=item.EmployeeID})" class="btn btn-defaul">Edit</a> 
+            <a href="@Url.Action("Delete","Employee",new { id=item.EmployeeID})" class="btn btn-defaul">Delete</a>
         </td>
     </tr>
 }
@@ -63,17 +62,7 @@
         }
     });
         
-        function Delete(id) {
-            alerify.confirm('Web Api For Operations', 'Are sure to delete this record?', function () {
-                window.location.href = '@Url.Action("Delete","Employee")/' + id;
-            }, null);
-        }
-
-        //else{
-        //    alertify.confirm('Web Api For Operations','Are you sure to delete this record?',function(){
-        //        window.location.href="http://localhost:17730";
-        //    },null);
-        //}
+        
        
 </script>
     }
