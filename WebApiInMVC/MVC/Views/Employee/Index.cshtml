@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MVC.Models.MvcEmployeeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br/>
+
+<p>
+   <a href="@Url.Action("AddOrEdit","Employee")">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            <a href="@Url.Action("AddOrEdit","Employee", new { id=item.EmployeeID})" class="btn btn-defaul">Edit</a>
+            <a onClick="Delete(@item.EmployeeID)" class="btn btn-defaul">Delete</a> 
+            @*<a href="@Url.Action("Delete","Employee",new { id=item.EmployeeID})">Delete</a>*@
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    
+    <script>
+    $(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        if (successMessage != "") {
+            alertify.success(successMessage)
+        }
+    });
+        
+        function Delete(id) {
+            alerify.confirm('Web Api For Operations', 'Are sure to delete this record?', function () {
+                window.location.href = '@Url.Action("Delete","Employee")/' + id;
+            }, null);
+        }
+
+        //else{
+        //    alertify.confirm('Web Api For Operations','Are you sure to delete this record?',function(){
+        //        window.location.href="http://localhost:17730";
+        //    },null);
+        //}
+       
+</script>
+    }
+
